@@ -1,0 +1,29 @@
+
+<!--Mi reto en javascript-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var arreglo= [[3,5,67,8,0],[6,8,77,44,0],[2,3,5,4,0]];
+		
+
+		for (var i=0;i<3;i++){
+			var suma=0;
+			for (var j=0; j<5; j++){
+
+				suma= suma+arreglo[i][j];
+				
+				
+			}
+			
+			document.write("El promedio del arreglo bidimensional ["+arreglo[i]+ "] es: ");
+			arreglo[i][4]=suma/4;
+			document.write(arreglo[i][4]+"<br>");
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!--TRABAJAREMOS CON QUEUE:
+PASOS:
+
+Crear un pointer para saber que hay en el front y rear, osea crear variables
+Colocar estos valores en -1 al inicializar
+Incrementar en 1 el valor de rear cuando agreguemos algún elemento
+Retornar el valor de front al quitar algún elemento, y incrementar en 1 el valor de front al usar dequeue
+Ante de agregar algún elemento revisar si hay espacio (ISEMPTY()) importante, ya que si no revisamos se puede estar perdiendo información importante.
+Antes de remover algún elemento revisamos que existan elementos (ISEMPTY()) se debe revisar, ya que al no haber elementos nos dirá que removió algún elemento cuando realmente no ha hecho nada
+Asegurarnos de que al remover todos los elementos resetear nuestro front y rear a -1. Importantísimo, ya que si no reseteamos cuando retomemos algún valor nos puede dar 5, el cual no existe, ya que tenemos solo 5 posiciones iniciando en cero (0,1,2,3,4).
+Este queue lo vamos a realizar con un Array, ya que sabemos el numero de elementos que se van a guardar en el Array.
+Lo mejor es inicializar en -1, ya que siempre en programación se utiliza la posición 0 (cero).-->
+	<script>
+		var maxSize= 5;
+		var array=[];
+		var front=-1;
+		var rear=-1;
+		
+
+		function enQueue(v){
+
+			if(!(rear>=maxSize-1)){
+				rear++;
+				array[rear]=v;
+				document.write("el valor del array en la posicion array["+rear+"] es = "+array[rear]+"<br>");
+				front=0;
+			}else{
+				document.write("el array esta lleno <br>");
+			}
+		}
+		enQueue(2);
+		enQueue(4);
+		enQueue(5);
+		enQueue(7);
+		enQueue(8);
+		enQueue(1);
+		
+		for(y in array){
+			document.write("array["+y+"]= "+array[y]+"<br>");
+		}
+
+		function deQueue(){
+			if(front==-1){
+				document.write("<br>no hay ningun valor en la cola<br>");
+			}else{
+				document.write("Se elimino el valor "+array[front]+" de la posicion array["+front+"]<br>");
+				for(z=0;z<array.length;z++){
+					if(array.length == 1){
+						array.length = 0;
+						rear= -1;
+						front=-1;
+						break;
+					}
+					array[z]=array[z+1];
+				}
+				if(array.length > 1){
+					array.length= array.length-1;
+					for(y in array){
+						document.write("array["+y+"]= "+array[y]+"<br>");
+					}
+				}
+			}	
+		}
+		deQueue();
+		deQueue();
+		deQueue();
+		deQueue();
+		deQueue();
+		deQueue();
+		enQueue(1);
+		deQueue();
+		deQueue();
+		enQueue(1);
+		enQueue(2);
+		deQueue();
+	</script>
+</body>
+</html>

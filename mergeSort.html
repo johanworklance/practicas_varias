@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		const mergeSort = arr => {
+  //Check if the array has more than one element
+  if (arr.length <= 1) {
+    return arr;
+  }
+  //Figure out the middle of the array ( divide the array in half)
+  let middle = Math.floor(arr.length / 2);
+  //divided into left and right
+  let left = arr.slice(0, middle);
+  console.log("left", left);
+  let right = arr.slice(middle);
+  console.log("right", right);
+  //using recursion to combine the left and right part
+
+  return merge(mergeSort(left), mergeSort(right));
+};
+
+//Merge the two arrays: left and right
+const merge = (leftArray, rightArray) => {
+  let resultArray = [],
+    leftIndex = 0,
+    rightIndex = 0;
+
+  //We willconcatenate values into the resultArray in order
+  while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+    if (leftArray[leftIndex] < rightArray[rightIndex]) {
+      resultArray.push(leftArray[leftIndex]);
+      leftIndex++;
+      console.log("leftArray", leftArray);
+    } else {
+      resultArray.push(rightArray[rightIndex]);
+      rightIndex++;
+      console.log("rightArray", rightArray);
+    }
+  }
+  //Concate all the elements
+  return resultArray
+    .concat(leftArray.slice(leftIndex))
+    .concat(rightArray.slice(rightIndex));
+};
+var array= [0, 3, 5, 2, 7, 1, -10, 3, 6];
+arrayOrdenado=mergeSort(array);
+
+for(x in arrayOrdenado){
+	document.write(`${arrayOrdenado[x]}, `);
+}
+	</script>
+
+</body>
+</html>

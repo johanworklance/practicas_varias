@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		functionquickSort(array){
+    // Evaluamos que el arreglo tenga por lo menos 2 elementos
+    if (array.length < 2) {
+        returnarray;
+    } else {
+        // Tomamos el primer elemento del arreglo como pivote
+        let piv = array.shift(); //Shift saca la primer posición
+        let leftArray = [];
+        let rightArray = [];
+        // Recorremos el arreglo hasta acabar sus elementos
+        while (array.length) {
+            // Se mandan los elementos a los arreglos temporales
+            if (array[0] <= piv) {
+                leftArray.push(array.shift());
+            } else {
+                rightArray.push(array.shift());
+            }
+        }
+        // Regresamos la unión de los temporales y el pivote 
+        returnarray.concat(
+            quickSort(leftArray), //Se ordenan ambos arreglos
+            piv, //debe ser el punto medio
+            quickSort(rightArray)); 
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+segundo ejemplo
+
+Les dejo la implementación del algoritmo en JS devolviendo que monedas se usaron en vez del número, son 3:
+1.-Tiene que estar ordenado de Mayor a Menor (si no basta con agregar un sort al coinSet en la primer llamada).
+2.- No requiere ordenación pero es más tardado.
+3 No requiere ordenación y sirve para hacerlo con un inventario de monedas, es decir un array de todas las monedas y sus denominaciones posibles.
+
+function greedyChange(coinSet, change, res) {
+    if (change <= 0) {
+        return res;
+    }
+    for (let i = 0; i < coinSet.length; i++) {
+        if (change - coinSet[i] >= 0) {
+            return greedyChange(
+                coinSet, 
+                change - coinSet[i], 
+                res.concat(coinSet[i])); 
+        } 
+    }
+}
+
+function greedyChangeMax(coinSet, change, res) {
+    if (change <= 0) {
+        return res;
+    }
+    let temps = []
+    for (let i = 0; i < coinSet.length; i++) {
+        if (change - coinSet[i] >= 0) {
+            temps.push(coinSet[i]);
+        } 
+    }
+    const max = Math.max(...temps);
+    return greedyChangeMax(
+        coinSet, 
+        change - max, 
+        res.concat(max)); 
+}
+
+function greedyChangeMaxSplice(coinSet, change, res) {
+    if (change <= 0) {
+        return res;
+    }
+    let temps = []
+    for (let i = 0; i < coinSet.length; i++) {
+        if (change - coinSet[i] >= 0) {
+            temps.push(coinSet[i]);
+        } 
+    }
+    if (temps.length) {
+        const pos = coinSet.lastIndexOf(Math.max(...temps));
+        const val = coinSet[pos];
+        coinSet.splice(pos, pos);
+        return greedyChangeMaxSplice(
+            coinSet, 
+            change - val, 
+            res.concat(val)); 
+    } else {
+        return res;
+    }
+}
+
+console.log(greedyChange([20, 15, 10, 5, 1], 27, []));
+console.log(greedyChangeMax([15, 20, 5, 10, 1], 27, []));
+console.log(greedyChangeMaxSplice([15, 20, 5, 10, 1], 27, []));
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>prueba</title>
+	</head>
+	<body>
+		<script>
+			function operacion(){
+				var valor=0;
+				function incrementar(){
+					return valor+=5;
+				}
+				return incrementar;
+			}
+			 var ejecutar= operacion();
+
+			console.log(ejecutar());
+			console.log(ejecutar());
+			console.log(operacion());
+
+			/*var valor=0;
+				function incrementar(){
+					return valor+=5;
+				}
+				function incrementar2(){
+					return valor+=5;
+				}
+
+				console.log(incrementar());
+				console.log(incrementar2());*/
+
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var array= [6,4,3,11,10];
+		var longitud= array.length;
+		document.write("arreglo desordenado<br><br>");
+		for(x in array){
+			document.write(`posicion ${x} valor: ${array[x]}<br>`);
+		}
+
+		function insertSort(arreglo,tamaño){
+			for(i=1;i<tamaño;i++){
+				var valorComparar= arreglo[i];
+				j= i-1;
+				while(j>=0 && arreglo[j]>valorComparar){
+					arreglo[j+1]= arreglo[j];
+					j--;
+				}
+				arreglo[j+1]= valorComparar;//recordar que si por ejemplo tenemos los valores
+				//6,4 al hacer el cambio en el while j valdra -1 al salir de el, arreglo[j+1] es igual a -1+1=0 asi la posicion cero guardada el valor de 4 y ya en el while colocamos el valor de 6 en la posicion 1
+			}
+		}
+		insertSort(array,longitud);
+		document.write("<br>arreglo ordenado<br><br>");
+		for(x in array){
+			document.write(`posicion ${x} valor: ${array[x]}<br>`);
+		}
+	</script>
+</body>
+</html>

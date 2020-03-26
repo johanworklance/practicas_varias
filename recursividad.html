@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function factorialRecursivo(n){
+			if(n==0){
+				return 1;
+			}
+			return (n* factorialRecursivo(n-1));
+		}
+		document.write(`El factorial de 4 usando recursividad es= ${factorialRecursivo(10)}<br>`);
+
+		function factorialCiclos(n){
+			
+			resultado=1;
+			for(i=1;i<=n;i++){
+				resultado= resultado * i;
+				document.write(`<br>${resultado}<br>`)
+			}
+			return resultado;
+		}
+		document.write(`El factorial de 4 usando ciclos es= ${factorialCiclos(10)}`);
+
+		document.write("<br>Poner al revez un string<br><br>");
+
+		
+
+		/*function reverse(str){
+			if(str.length){//length devuelve 0 si le mandan un cadena vacia osea false.
+				return str.substring(str.length-1)+ reverse(str.substring(0, str.length-1));
+			}else{
+				return str;
+			}
+		}*/
+		var reverse= str => str.length ? str.substring(str.length-1)+ reverse(str.substring(0, str.length-1)):"";//recordar funcion arrow y uso de un if ternario, aqui el en la primera operacion se queda el "e" y manda recursivamente el "lov", luego "v" y manda "lo", "o" "l", "l" y substring de 0 a lenght-1 manda nada, y se rompe la operacion;
+
+
+		
+		document.write(reverse("love"));
+
+
+		document.write("<br>Poner al revez un string con ciclos<br>");
+
+		var str= "love";
+		var result="";
+		for(i=str.length-1; i>=0; i--){
+			result+= str[i];
+			
+		}
+		document.write("<br>"+result);
+
+	</script>
+</body>
+</html>
+
